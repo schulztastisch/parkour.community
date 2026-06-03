@@ -60,3 +60,20 @@ function pkr_localize() {
         'nonce'   => wp_create_nonce('pkr_nonce'),
     ]);
 }
+
+// Theme-Detection inline im <head> – verhindert Light-Mode-Flackern
+function pkr_darkmode_head_script() {
+  echo '<script>
+(function(){
+  try {
+    var t = localStorage.getItem("theme");
+    if (!t) {
+      t = window.matchMedia("(prefers-color-scheme: dark)").matches ? "dark" : "light";
+    }
+    document.documentElement.setAttribute("data-theme", t);
+  } catch(e) {}
+})();
+</script>' . "
+";
+}
+add_action('wp_head', 'pkr_darkmode_head_script', 1);

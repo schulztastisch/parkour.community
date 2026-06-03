@@ -275,3 +275,84 @@ html[data-theme='dark'] #pkr-sug {
   background-color: var(--accent);
   color: var(--accent-contrast);
 }
+
+/* ===== FIX: Städte-Dropdown (korrekte ID: pkr-suggestions) ===== */
+#pkr-suggestions {
+  position: absolute;
+  z-index: 99999;
+  list-style: none;
+  margin: 4px 0 0 0;
+  padding: 0.4rem 0;
+  border-radius: 12px;
+  box-shadow: 0 8px 24px rgba(0,0,0,0.35);
+  filter: none !important;
+  backdrop-filter: none !important;
+  background-color: #ffffff !important;
+  color: #111111 !important;
+  min-width: 220px;
+  overflow: hidden;
+}
+
+#pkr-suggestions li {
+  padding: 0.45rem 0.85rem;
+  cursor: pointer;
+  color: #111111 !important;
+  background-color: transparent;
+}
+
+#pkr-suggestions li:hover,
+#pkr-suggestions li.active {
+  background-color: var(--accent) !important;
+  color: var(--accent-contrast) !important;
+}
+
+html[data-theme='dark'] #pkr-suggestions {
+  background-color: #1a1a1a !important;
+  color: #f0f0f0 !important;
+}
+
+html[data-theme='dark'] #pkr-suggestions li {
+  color: #f0f0f0 !important;
+}
+
+/* Der Container braucht position:relative damit absolute klappt */
+.pkr-input-wrap,
+#pkr-input-wrap,
+.pkr-search-wrap {
+  position: relative;
+}
+
+/* Dropdown Darkmode - explizit übersteuern */
+html[data-theme='dark'] #pkr-suggestions {
+  background-color: #1e1e1e !important;
+  color: #f0f0f0 !important;
+  box-shadow: 0 8px 24px rgba(0,0,0,0.6);
+}
+
+html[data-theme='dark'] #pkr-suggestions li {
+  color: #f0f0f0 !important;
+}
+
+/* Input-Felder im Darkmode */
+html[data-theme='dark'] input,
+html[data-theme='dark'] input[type="text"],
+html[data-theme='dark'] textarea,
+html[data-theme='dark'] select,
+html[data-theme='dark'] #pkr-input {
+  background-color: #1e1e1e !important;
+  color: #f0f0f0 !important;
+  border-color: #444444 !important;
+  caret-color: var(--accent);
+}
+
+/* Placeholder-Farbe im Darkmode */
+html[data-theme='dark'] input::placeholder,
+html[data-theme='dark'] #pkr-input::placeholder {
+  color: #888888 !important;
+}
+
+/* Autofill-Hintergrund (Chrome/Safari überschreiben das gerne) */
+html[data-theme='dark'] input:-webkit-autofill {
+  -webkit-box-shadow: 0 0 0 1000px #1e1e1e inset !important;
+  -webkit-text-fill-color: #f0f0f0 !important;
+}
