@@ -1,0 +1,8 @@
+f = open('js/parkour-animation.js', 'r')
+c = f.read()
+f.close()
+c = c.replace("aufbauen können.", "aufbauen - wir melden uns!")
+f = open('js/parkour-animation.js', 'w')
+f.write(c)
+f.close()
+print("Done:", c.count("aufbauen - wir melden uns!"), "replacements")
