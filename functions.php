@@ -77,3 +77,23 @@ function pkr_darkmode_head_script() {
 ";
 }
 add_action('wp_head', 'pkr_darkmode_head_script', 1);
+
+// Textarea auf Tweet-Länge begrenzen
+function pkr_limit_textarea() {
+  echo '<script>
+document.addEventListener("DOMContentLoaded", function() {
+  var ta = document.getElementById("pkr-form-msg");
+  if (ta) {
+    ta.setAttribute("maxlength", "280");
+    ta.setAttribute("placeholder", "Optionale Nachricht (max. 280 Zeichen)...");
+  }
+});
+</script>';
+}
+add_action('wp_footer', 'pkr_limit_textarea', 20);
+
+// Automatischer Copyright-Footer mit aktuellem Jahr
+function pkr_copyright_footer() {
+  echo '<footer class="pkr-footer">Copyright &copy; ' . date('Y') . ' parkour.community</footer>';
+}
+add_action('wp_footer', 'pkr_copyright_footer', 99);
