@@ -38,17 +38,22 @@ function pkr_city_request_handler() {
     check_ajax_referer('pkr_nonce', 'nonce');
     $city = sanitize_text_field($_POST['city'] ?? '');
     $plz  = sanitize_text_field($_POST['plz']  ?? '');
+    $email = sanitize_email($_POST['email'] ?? '');
     $text = sanitize_textarea_field($_POST['msg'] ?? '');
-    if (empty($city) || empty($plz)) {
+    if (empty($city) || empty($plz) || !is_email($email)) {
         wp_send_json_error('Pflichtfelder fehlen.');
     }
     $to      = 'hi@parkour.community';
     $subject = 'Neue Stadtanfrage: ' . $city . ' (' . $plz . ')';
     $body    = "Stadt: $city
 PLZ: $plz
+E-Mail: $email
 Nachricht: $text
 ";
-    $headers = ['Content-Type: text/plain; charset=UTF-8'];
+    $headers = [
+        'Content-Type: text/plain; charset=UTF-8',
+        'Reply-To: ' . $email,
+    ];
     wp_mail($to, $subject, $body, $headers);
     wp_send_json_success('Danke! Wir melden uns bald.');
 }
