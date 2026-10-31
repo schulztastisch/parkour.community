@@ -40,10 +40,10 @@
     .replace(/-+/g,'-')
     .replace(/^-|-$/g,'');
 }
-function selectCity(name){inp.value=name;selectedFromList=true;hideSug();if(warnEl)warnEl.style.display='none';if(fallbackEl)fallbackEl.style.display='none';var slug=slugifyCity(name);roll(mkList(slug,5));}
+function selectCity(name){inp.value=name;selectedFromList=true;hideSug();if(warnEl)warnEl.style.display='none';if(fallbackEl)fallbackEl.style.display='none';if(formCityEl)formCityEl.value=name;if(formEl)formEl.style.display='block';var slug=slugifyCity(name);roll(mkList(slug,5));}
   function fetchSuggestions(q){clearTimeout(debTimer);debTimer=setTimeout(function(){if(q.length<2){hideSug();return;}var url='https://nominatim.openstreetmap.org/search?format=json&addressdetails=1&limit=5&countrycodes=de,at,ch&featuretype=city&q='+encodeURIComponent(q);var xhr=new XMLHttpRequest();xhr.open('GET',url,true);xhr.setRequestHeader('Accept-Language','de');xhr.onload=function(){if(xhr.status===200){try{var data=JSON.parse(xhr.responseText);var names=[];data.forEach(function(r){var n=r.address&&(r.address.city||r.address.town||r.address.village||r.address.municipality);if(n&&names.indexOf(n)===-1)names.push(n);});showSug(names);}catch(e){hideSug();}}};xhr.send();},350);}
   if(inp){inp.addEventListener('input',function(){selectedFromList=false;fetchSuggestions(inp.value.trim());});inp.addEventListener('keydown',function(e){var items=sugEl.querySelectorAll('li');if(e.key==='ArrowDown'){e.preventDefault();activeIdx=Math.min(activeIdx+1,items.length-1);items.forEach(function(l,i){l.classList.toggle('active',i===activeIdx);});}else if(e.key==='ArrowUp'){e.preventDefault();activeIdx=Math.max(activeIdx-1,0);items.forEach(function(l,i){l.classList.toggle('active',i===activeIdx);});}else if(e.key==='Enter'){if(activeIdx>=0&&items[activeIdx]){selectCity(items[activeIdx].textContent);}else if(inp.value.trim()){setBtn.click();}}else if(e.key==='Escape'){hideSug();}});inp.addEventListener('blur',function(){setTimeout(function(){hideSug();if(!selectedFromList&&inp.value.trim().length>0){if(warnEl)warnEl.style.display='block';if(fallbackEl){fallbackEl.style.display='block';if(formCityEl)formCityEl.value=inp.value.trim();}}},200);});}
-  if(setBtn){setBtn.addEventListener('click',function(){if(!selectedFromList&&inp.value.trim()){if(warnEl)warnEl.style.display='block';if(fallbackEl){fallbackEl.style.display='block';if(formCityEl)formCityEl.value=inp.value.trim();}return;}if(selectedFromList){selectedFromList=false;}});}
+  if(setBtn){setBtn.addEventListener('click',function(){if(!selectedFromList&&inp.value.trim()){if(warnEl)warnEl.style.display='block';if(fallbackEl){fallbackEl.style.display='block';if(formCityEl)formCityEl.value=inp.value.trim();if(formEl)formEl.style.display='block';}return;}if(selectedFromList){selectedFromList=false;}});}
   if(formEl){
     var emailEl=document.getElementById('pkr-form-email');
     if(!emailEl){
@@ -65,7 +65,7 @@ function selectCity(name){inp.value=name;selectedFromList=true;hideSug();if(warn
   }
   clipEl.addEventListener('click',function(){if(!busy)roll(mkList(FINAL,14));});
   window.addEventListener('resize',function(){if(!busy){var s=calcSize();applySize(s);setW();syncH();}});
-  function init(){var sz=calcSize();applySize(sz);setW();fill([FINAL]);syncH();gsap.set(drumEl,{y:0});if(!window.matchMedia('(prefers-reduced-motion: reduce)').matches){setTimeout(function(){roll(mkList(FINAL,14));},200);}}
+  function init(){var sz=calcSize();applySize(sz);setW();fill([FINAL]);syncH();gsap.set(drumEl,{y:0});if(formEl)formEl.style.display='block';if(!window.matchMedia('(prefers-reduced-motion: reduce)').matches){setTimeout(function(){roll(mkList(FINAL,14));},200);}}
   document.fonts.ready.then(function(){requestAnimationFrame(function(){requestAnimationFrame(init);});});
 })();// DARK MODE THEME TOGGLE
 (function () {
