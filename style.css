@@ -402,3 +402,28 @@ body::after {
   z-index: 100;
   opacity: 0.7;
 }
+
+.pkr-footer-content {
+  display: flex;
+  flex-direction: column;
+  gap: 0.2rem;
+  align-items: center;
+  justify-content: center;
+}
+
+.pkr-footer-made-by,
+.pkr-footer-wip {
+  margin: 0;
+  font-size: 12px;
+  color: var(--fg);
+}
+
+.pkr-footer-made-by a {
+  color: var(--accent);
+  text-decoration: none;
+  transition: text-decoration 180ms;
+}
+
+.pkr-footer-made-by a:hover {
+  text-decoration: underline;
+}

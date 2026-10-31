@@ -99,6 +99,11 @@ add_action('wp_footer', 'pkr_limit_textarea', 20);
 
 // Automatischer Copyright-Footer mit aktuellem Jahr
 function pkr_copyright_footer() {
-  echo '<footer class="pkr-footer">Copyright &copy; ' . date('Y') . ' parkour.community</footer>';
+  echo '<footer class="pkr-footer">';
+  echo '<div class="pkr-footer-content">';
+  echo '<p class="pkr-footer-made-by">Made with ❤️ by <a href="https://schulztastisch.de" target="_blank" rel="noopener noreferrer">schulztastisch</a></p>';
+  echo '<p class="pkr-footer-wip">🚧 Diese Website wird noch aufgebaut</p>';
+  echo '</div>';
+  echo '</footer>';
 }
 add_action('wp_footer', 'pkr_copyright_footer', 99);
