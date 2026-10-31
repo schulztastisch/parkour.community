@@ -380,6 +380,8 @@ html, body {
 main {
   overflow-y: auto;
   max-height: calc(100dvh - 0px);
+  overflow-x: hidden;
+  position: relative;
 }
 
 /* body::after Footer deaktivieren – wird jetzt per PHP ausgegeben */
