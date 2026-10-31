@@ -136,7 +136,7 @@
   list-style: none;
   margin: 0; padding: .3rem 0;
   box-shadow: 0 4px 16px rgba(0,0,0,.1);
-  z-index: 999;
+  z-index: 9999;
   overflow: hidden;
 }
 #pkr-suggestions li {
@@ -170,6 +170,8 @@
   flex-direction: column;
   gap: .5rem;
   max-width: 320px;
+  position: relative;
+  z-index: 10;
 }
 .pkr-form-row {
   display: flex;
