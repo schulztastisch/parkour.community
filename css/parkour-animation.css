@@ -84,6 +84,7 @@
   gap: .75rem;
   flex-wrap: wrap;
   align-items: center;
+  overflow: visible;
 }
 
 .pkr-input-row {
@@ -96,6 +97,8 @@
   gap: .3rem;
   transition: border-color 180ms ease;
   background: transparent;
+  position: relative;
+  overflow: visible;
 }
 .pkr-input-row:focus-within { border-color: #ff7a1a; }
 .pkr-input-row input {
@@ -121,6 +124,7 @@
 .pkr-input-wrap {
   position: relative;
   display: inline-block;
+  overflow: visible;
 }
 
 /* Suggestions Dropdown */
