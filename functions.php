@@ -103,6 +103,7 @@ function pkr_copyright_footer() {
   echo '<div class="pkr-footer-content">';
   echo '<p class="pkr-footer-made-by">Made with ❤️ by <a href="https://schulztastisch.de" target="_blank" rel="noopener noreferrer">schulztastisch</a></p>';
   echo '<p class="pkr-footer-wip">🚧 Diese Website wird noch aufgebaut</p>';
+  echo '<p class="pkr-footer-copyright">Copyright © ' . date('Y') . ' parkour.community</p>';
   echo '</div>';
   echo '</footer>';
 }
